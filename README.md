@@ -1,5 +1,11 @@
 # Socket.io-v1.x-Library
+
+Originally implemented by [Washo4ver](http://github.com/washo4evr/Socket.io-v1.x-Library)
+Few bug fixes.
 Socket.io Library for Arduino
+
+
+Most of the coding done by 
 
 Works with W5100 & ENC28J60 as well as ESP8266
 
