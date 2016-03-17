@@ -91,8 +91,8 @@ void SocketIOClient::parser(int index) {
 	//Serial.println(sizemsg);			//Can be used for debugging
 	for (int i = index + 2; i < index + sizemsg + 2; i++)
 		rcvdmsg += (char)databuffer[i];
-	Serial.print("Received message = ");	//Can be used for debugging
-	Serial.println(rcvdmsg);				//Can be used for debugging
+	// Serial.print("Received message = ");	//Can be used for debugging
+	// Serial.println(rcvdmsg);				//Can be used for debugging
 	switch (rcvdmsg[0])
 	{
 	case '2':
@@ -111,13 +111,8 @@ void SocketIOClient::parser(int index) {
 			Serial.println("Upgrade to WebSocket confirmed");
 			break;
 		case '2':
-			RID = rcvdmsg.substring(4, rcvdmsg.indexOf("\","));
-			Rname = rcvdmsg.substring(rcvdmsg.indexOf("\",") + 4, rcvdmsg.indexOf("\":"));
-			Rcontent = rcvdmsg.substring(rcvdmsg.indexOf("\":") + 3, rcvdmsg.indexOf("\"}"));
-			//Serial.println("RID = " + RID);
-			//Serial.println("Rname = " + Rname);
-			//Serial.println("Rcontent = " + Rcontent);
-			Serial.println(rcvdmsg);
+
+			dataArrivedDelegate(*this, rcvdmsg);
 			break;
 		}
 	}

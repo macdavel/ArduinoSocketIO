@@ -36,17 +36,17 @@
 #include "Arduino.h"
 
 //Uncomment the correct line
-//#include <Ethernet.h>					//For W5100
+#include <Ethernet.h>					//For W5100
 //#include <UIPEthernet.h>				//For ENC28J60
-#include <ESP8266WiFi.h>				//For ESP8266
-//#include "SPI.h"
+// #include <ESP8266WiFi.h>				//For ESP8266
+#include "SPI.h"
 // Length of static data buffers
 #define DATA_BUFFER_LEN 120
 #define SID_LEN 24
 
 class SocketIOClient {
 public:
-	typedef void(*DataArrivedDelegate)(SocketIOClient client, char *data);
+	typedef void(*DataArrivedDelegate)(SocketIOClient client, String data);
 	bool connect(char hostname[], int port = 80);
 	bool connected();
 	void disconnect();
@@ -59,8 +59,8 @@ public:
 private:
 	void parser(int index);
 	void sendHandshake(char hostname[]);
-	//EthernetClient client;				//For ENC28J60 or W5100
-	WiFiClient client;						//For ESP8266		
+	EthernetClient client;				//For ENC28J60 or W5100
+	// WiFiClient client;						//For ESP8266		
 	DataArrivedDelegate dataArrivedDelegate;
 	bool readHandshake();
 	void readLine();
